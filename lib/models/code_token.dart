@@ -17,7 +17,7 @@ enum Tokens {
     r'^(if|else|while|for|return)$',
     0xFFbf2153,
   ),
-  type('Tipo de dato', r'^(num|str|bool)$', 0xff4842f5),
+  type('Tipo de dato', r'^(int|float|char|void|string)$', 0xff4842f5),
   identifier('Identificador', r'^[a-zA-Z][a-zA-Z0-9]*$', 0xfff5b042),
   number('Constante', r'^[0-9]+(\.[0-9]+)?$', 0xff3da127),
   string('Cadena', r'^\".*\"$', 0xffa17827),
@@ -35,7 +35,7 @@ enum Tokens {
   ),
   arithmeticOperator(
     'Operador aritmético',
-    r'^(\+|\-|\*|\/|\%)$',
+    r'^(\+|\-|\*|\/|>>|<<)$',
     0xff000000,
   ),
   assignmentOperator(
