@@ -4,9 +4,9 @@ import 'package:analexico/providers/cursor_position.provider.dart';
 enum AnalyzerType { lexical, syntactic, semantic }
 
 class LexicalAnalyzer {
-  static List<Token> analyze(String text) {
+  static List<Token> analyze(String input) {
     // Clean text
-    text = text.replaceAll('\n', ' ').replaceAll(RegExp(" +"), " ");
+    String text = input.replaceAll('\n', ' ').replaceAll(RegExp(" +"), " ");
 
     String tmp = '';
     List<Token> tokens = [];
@@ -20,8 +20,8 @@ class LexicalAnalyzer {
           Token(
             lexeme: tmp,
             token: Tokens.values.firstWhere((e) => Token.isToken(tmp, [e])),
-            line: CursorPosition.linePosition(text, i),
-            column: CursorPosition.columnPosition(text, i),
+            line: CursorPosition.linePosition(input, i),
+            column: CursorPosition.columnPosition(input, i),
           ),
         );
         tokens.add(
@@ -29,8 +29,8 @@ class LexicalAnalyzer {
             lexeme: extra,
             token:
                 singleCharTokens.firstWhere((e) => Token.isToken(extra, [e])),
-            line: CursorPosition.linePosition(text, i + 1),
-            column: CursorPosition.columnPosition(text, i + 1),
+            line: CursorPosition.linePosition(input, i + 1),
+            column: CursorPosition.columnPosition(input, i + 1),
           ),
         );
         i++;
@@ -42,8 +42,8 @@ class LexicalAnalyzer {
           Token(
             lexeme: tmp,
             token: Tokens.values.firstWhere((e) => Token.isToken(tmp, [e])),
-            line: CursorPosition.linePosition(text, i),
-            column: CursorPosition.columnPosition(text, i),
+            line: CursorPosition.linePosition(input, i),
+            column: CursorPosition.columnPosition(input, i),
           ),
         );
         if (extra == ' ' || extra == '') i++;
